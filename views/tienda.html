@@ -3,146 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rookie Scratch | Tatuajes Blackwork, Ilustración Dark Art & Merch</title>
-    <meta name="description" content="Portafolio de Rookie Scratch, artista del tatuaje especializado en blackwork y dark art en [Tu Ciudad]. Descubre diseños únicos, ilustraciones y compra merch oficial.">
-    <meta name="keywords" content="tatuador blackwork, ilustrador dark art, tienda de tatuajes, sudaderas de diseño, arte oscuro, rookie scratch, [Tu Ciudad]">
-    <meta name="author" content="Rookie Scratch">
-    <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#990000">
+    <title>Tienda - Rookie Scratch</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Ajustes específicos para que la grid de productos se vea bien */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://tupagina.com/">
-    <meta property="og:title" content="Rookie Scratch | Tatuajes, Ilustración & Merch">
-    <meta property="og:description" content="Explora el mundo del blackwork y dark art. Tatuajes, ilustraciones y merch por Rookie Scratch.">
-    <meta property="og:image" content="https://tupagina.com/imagenes/mural.jpg">
+        .product-card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://tupagina.com/">
-    <meta property="twitter:title" content="Rookie Scratch | Tatuajes, Ilustración & Merch">
-    <meta property="twitter:description" content="Explora el mundo del blackwork y dark art. Tatuajes, ilustraciones y merch por Rookie Scratch.">
-    <meta property="twitter:image" content="https://tupagina.com/imagenes/mural.jpg">
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+        }
 
-    <link rel="canonical" href="https://tupagina.com/">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+        .product-image img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="style.css">
+        .product-info {
+            padding: 1.5rem;
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
 
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ArtGallery",
-      "name": "Rookie Scratch",
-      "description": "Portafolio y tienda de Rookie Scratch, un artista del tatuaje especializado en blackwork y dark art.",
-      "url": "https://tupagina.com",
-      "image": "https://tupagina.com/imagenes/mural.jpg",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "[Tu Ciudad]",
-        "addressCountry": "[Tu Pais]"
-      },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "email": "contacto@tupagina.com",
-        "contactType": "customer service"
-      },
-      "founder": {
-        "@type": "Person",
-        "name": "Rookie Scratch"
-      }
-    }
-    </script>
+        .product-info h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .product-info .price {
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-info .description {
+            font-size: 0.9rem;
+            color: #bbb;
+            margin-bottom: 1.5rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
 </head>
 <body>
-
-    <div id="loader">
-        <div class="spinner"></div>
-    </div>
-
     <header class="sticky-nav">
-        <div class="logo" style="white-space: nowrap;">ROOKIE SCRATCH</div>
-        <button class="menu-toggle" aria-label="Abrir menú">
-            <div class="hamburger"></div>
-        </button>
+        <div class="logo">ROOKIE SCRATCH</div>
         <nav>
             <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="tatuajes.html">Tatuajes</a></li>
-                <li><a href="ilustracion.html">Ilustración</a></li>
-                <li><a href="tienda.html">Tienda</a></li>
-                <li><a href="index.html#booking" class="cta-button cta-nav">Reservar Cita</a></li>
-                <li><a href="cart.html" class="cart-link"><i class="fas fa-shopping-cart"></i><span class="cart-counter">0</span></a></li>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/tatuajes.html">Tatuajes</a></li>
+                <li><a href="/ilustracion.html">Ilustración</a></li>
+                <li><a href="/tienda" class="active">Tienda</a></li>
+                <li><a href="/cart.html"><i class="fas fa-shopping-cart"></i></a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
-        <section id="tienda" class="ecommerce-section">
-            <h2 data-scrollreveal>Tienda</h2>
-            <p class="section-intro" data-scrollreveal>Lleva una pieza del universo Rookie Scratch a casa. Stock limitado.</p>
-
-            <!-- Featured Product -->
-            <div class="featured-product" data-scrollreveal>
-                <div class="featured-product-image">
-                    <img src="imagenes/rookie-shop/ataudes%202.jpg" alt="Producto Destacado">
-                </div>
-                <div class="featured-product-info">
-                    <h3>Nuevas Libretas Disponibles</h3>
-                    <p>Descubre nuestras nuevas libretas personalizables con forma de ataúd, perfectas para guardar tus ideas, bocetos o cualquier otro tesoro. Hechas a mano con materiales de alta calidad y acabados en negro mate, estas libretas son el complemento ideal para cualquier amante del arte oscuro.</p>
-                    <a href="#" class="cta-primary">Ver Detalles</a>
-                </div>
-            </div>
-
-            <!-- Sección de Merch -->
-            <div class="product-category" data-scrollreveal>
-                <h3>Merch Oficial</h3>
-                <!-- Product list will be rendered dynamically from localStorage catalog. -->
-                <div id="products-list" class="products-list">
-                    <!-- Productos cargados por script.js -->
-                </div>
-            </div>
-
-
-
-            <div class="custom-order-promo" data-scrollreveal>
-                <h3>¿Buscas un diseño personalizado?</h3>
-                <p>Además de los productos en la tienda, ofrezco la posibilidad de encargar prints con diseños 100% personalizados. Si tienes una idea, contáctame.</p>
-                <a href="index.html#booking" class="cta-secondary">Cotizar Diseño Personalizado</a>
-            </div>
+    <main class="container">
+        <section class="shop-header" style="padding-top: 5rem; text-align: center;">
+            <h1>Rookie Shop</h1>
+            <p>Productos exclusivos diseñados por Rokiescratch</p>
         </section>
+
+        <div id="productos-container" class="products-grid">
+            <div style="text-align: center; grid-column: 1/-1; padding: 3rem;">
+                <p>Cargando productos...</p>
+            </div>
+        </div>
     </main>
 
-    <div id="modal" class="modal">
-        <span class="close-modal">&times;</span>
-        <img class="modal-content" id="modal-image">
-    </div>
-
-    <button id="back-to-top">&#8679;</button>
-
     <footer>
-        <div class="footer-logo-container">
-            <img src="imagenes/logo-rookie.png" alt="logo rookie">
-            <!-- Puedes poner tu logo aquí, por ejemplo: <img src="imagenes/logo-pequeno.svg" alt="Logo Rookie Scratch"> -->
+        <div class="container footer-content">
+            <p>&copy; 2026 Rookie Scratch. Todos los derechos reservados.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+            </div>
         </div>
-        <div class="social-icons">
-            <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-            <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-        </div>
-        <p>&copy; 2025 Rookie Scratch. Todos los derechos reservados.</p>
     </footer>
 
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/scrollreveal"></script>
-    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
-    <script src="script.js"></script>
+    <script src="/js/main.js" type="module"></script>
 </body>
 </html>
