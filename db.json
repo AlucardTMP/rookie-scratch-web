@@ -1,0 +1,72 @@
+{
+  "users": [
+    {
+      "id": "admin-master",
+      "username": "admin",
+      "email": "admin@tienda.com",
+      "password": "$2b$10$du6F0dEYoJ4O1lsJIlB/WuhYVEPqoCFB9KEQNV.Iyo4XMstq9yR42",
+      "role": "admin"
+    }
+  ],
+  "catalog": [
+    {
+      "id": "vwxyz",
+      "name": "Libreta \"Ataúd\"",
+      "price": "30",
+      "category": "libretas",
+      "images": [
+        "imagenes/rookie-shop/ataudes%202.jpg"
+      ],
+      "description": "Libreta con forma de ataúd",
+      "stock": 10
+    },
+    {
+      "id": "ejemplo-playera",
+      "name": "Playera Dark Art",
+      "price": 350,
+      "category": "ropa",
+      "images": [
+        "imagenes/uploads/frente.jpg",
+        "imagenes/uploads/espalda.jpg"
+      ],
+      "description": "Playera 100% algodón con diseño original",
+      "stock": 5
+    },
+    {
+      "id": "4c41d212-a98b-4783-a8e8-2f51bd26d192",
+      "name": "vbhgh",
+      "price": "2550",
+      "description": "",
+      "images": [
+        "imagenes/uploads/1775687721535-Captura de pantalla 2026-03-07 211653.png"
+      ],
+      "page": "producto.html?id=4c41d212-a98b-4783-a8e8-2f51bd26d192"
+    },
+    {
+      "id": "84d4a465-bde7-4244-908f-4310c70a9d7a",
+      "name": "vbhgh",
+      "price": "2550",
+      "description": "",
+      "images": [
+        "imagenes/uploads/1775687721539-Captura de pantalla 2026-03-07 211653.png"
+      ],
+      "page": "producto.html?id=84d4a465-bde7-4244-908f-4310c70a9d7a"
+    }
+  ],
+  "galleries": {
+    "tatuajes": [
+      {
+        "id": "abcdef",
+        "url": "imagenes/tatuaje-cambio-de-coazon.jpg",
+        "alt": "Tatuaje corazón"
+      }
+    ],
+    "ilustracion": [
+      {
+        "id": "mnopqr",
+        "url": "imagenes/mural.jpg",
+        "alt": "Ilustración mural"
+      }
+    ]
+  }
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- El title y la description cambiarán para cada producto -->
+    <title>Producto | Rookie Scratch</title>
+    <meta name="description" content="Descripción del producto.">
+    
+    <!-- Metas heredadas -->
+    <meta name="author" content="Rookie Scratch">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#990000">
+    <link rel="canonical" href="https://tupagina.com/producto.html">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="loader">
+        <div class="spinner"></div>
+    </div>
+
+    <header class="sticky-nav">
+        <div class="logo" style="white-space: nowrap;">ROOKIE SCRATCH</div>
+        <button class="menu-toggle" aria-label="Abrir menú">
+            <div class="hamburger"></div>
+        </button>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="tatuajes.html">Tatuajes</a></li>
+                <li><a href="ilustracion.html">Ilustración</a></li>
+                <li><a href="tienda.html">Tienda</a></li>
+                <li><a href="index.html#booking" class="cta-button cta-nav">Reservar Cita</a></li>
+                <li><a href="cart.html" class="cart-link"><i class="fas fa-shopping-cart"></i><span class="cart-counter">0</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="product-detail-section">
+            <div class="product-detail-container">
+                <div class="product-image-gallery">
+                    <!-- La imagen principal cambiará para cada producto -->
+                    <img src="https://via.placeholder.com/600x600.png?text=Producto" alt="Vista principal del producto" id="main-product-image">
+                    <!-- Aquí podrían ir más imágenes en miniatura -->
+                </div>
+                <div class="product-info">
+                    <!-- Título, precio y descripción cambiarán -->
+                    <h1 class="product-title">Nombre del Producto</h1>
+                    <p class="product-price-detail">$XX.XX</p>
+                    <div class="product-description-detail">
+                        <p>Aquí va la descripción detallada del producto. Puede ser un texto más largo que en la página de la tienda, explicando los materiales, el proceso de creación, las dimensiones, etc.</p>
+                        <ul>
+                            <li>Material: Algodón de alto gramaje / Papel de alta calidad</li>
+                            <li>Técnica: Bordado / Impresión Giclée</li>
+                            <li>Dimensiones: S, M, L, XL / 30x40 cm</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="cta-primary">Añadir al Carrito</a>
+                    <div class="social-share">
+                        <p>Compartir:</p>
+                        <a href="#" aria-label="Compartir en Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Compartir en Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Compartir en Pinterest"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-logo-container">
+            <img src="imagenes/logo-rookie.png" alt="logo rookie">
+        </div>
+        <div class="social-icons">
+            <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p>&copy; 2025 Rookie Scratch. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+</html>

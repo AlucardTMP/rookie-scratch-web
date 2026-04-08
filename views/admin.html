@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Rookie Scratch</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        .admin-section h3 {
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .admin-section {
+            background-color: #1a1a1a;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+        }
+        #image-preview-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .img-preview {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 5px;
+            border: 1px solid #333;
+        }
+        .admin-product-row {
+            border-bottom: 1px solid #333;
+            padding: 10px 0;
+        }
+        .login-error {
+            background: rgba(255, 0, 0, 0.1);
+            border: 1px solid var(--primary-color);
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="sticky-nav">
+        <div class="logo" style="white-space: nowrap;">ROOKIE SCRATCH</div>
+        <nav>
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/tienda">Tienda</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="checkout-section" style="padding-top:3rem;">
+            <div id="admin-container" class="container">
+                <h2>Panel de Administración</h2>
+
+                <div id="admin-login" class="admin-block">
+                    <form id="admin-login-form">
+                        <div class="form-row">
+                        <div class="form-group">
+    <label for="admin-username">Correo de Administrador</label>
+    <input id="admin-username" type="email" required>
+</div>
+<div class="form-group">
+    <label for="admin-password">Contraseña</label>
+    <input id="admin-password" type="password" required>
+</div>
+                        </div>
+                        <p class="login-error" style="display:none; color: #ff4444;"></p>
+                        <button type="submit" class="cta-primary">Iniciar Sesión</button>
+                    </form>
+                </div>
+
+                <div id="admin-panel" style="display:none; margin-top:1.5rem;">
+                    <div style="display:flex; justify-content: space-between; align-items: center;">
+                        <h3>Panel de Control</h3>
+                        <button id="admin-logout" class="cta-secondary">Cerrar Sesión</button>
+                    </div>
+
+                    <div class="admin-section" id="products-section">
+                        <h3>Gestión de Productos de la Tienda</h3>
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:start;">
+                            <form id="admin-add-product" style="display:flex;flex-direction:column;gap:1rem;">
+                                <h4>Añadir / Editar Producto</h4>
+                                <input type="hidden" id="prod-id">
+                                <div class="form-group">
+                                    <label for="prod-name">Nombre del Producto</label>
+                                    <input id="prod-name" type="text" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="prod-price">Precio (ej. 250.00)</label>
+                                    <input id="prod-price" type="number" step="0.01" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="prod-desc">Descripción</label>
+                                    <textarea id="prod-desc" rows="4"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="prod-images">Imágenes</label>
+                                    <input id="prod-images" type="file" multiple accept="image/*">
+                                </div>
+                                <div id="image-preview-container"></div>
+                                <div style="display:flex;gap:0.6rem;margin-top:1rem;">
+                                    <button type="submit" class="cta-primary" id="admin-save">Guardar Producto</button>
+                                    <button type="button" class="cta-secondary" id="admin-cancel-edit" style="display:none;">Cancelar</button>
+                                </div>
+                            </form>
+                            <div>
+                                <h4>Listado de Productos</h4>
+                                <div id="admin-product-list" style="margin-top:1rem;">
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p style="text-align:center;margin-top:2rem;">© 2026 Rookie Scratch - Admin Mode</p>
+    </footer>
+
+    <script src="/js/main.js" type="module"></script>
+    
+    <script type="module">
+        // Importamos la función que inicializa el panel desde tu archivo admin.js
+        import { initAdmin } from '/js/admin.js';
+
+        // --- 1. Script para previsualización de imágenes ---
+        const prodImagesInput = document.getElementById('prod-images');
+        const previewContainer = document.getElementById('image-preview-container');
+
+        if(prodImagesInput) {
+            prodImagesInput.addEventListener('change', () => {
+                previewContainer.innerHTML = ''; 
+                const files = prodImagesInput.files;
+                if (files) {
+                    Array.from(files).forEach(file => {
+                        if (!file.type.startsWith('image/')){ return; }
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            const img = document.createElement('img');
+                            img.src = e.target.result;
+                            img.classList.add('img-preview');
+                            previewContainer.appendChild(img);
+                        }
+                        reader.readAsDataURL(file);
+                    });
+                }
+            });
+        }
+
+        // --- 2. CONEXIÓN DEL LOGIN CON EL SERVIDOR SEGURO ---
+        const loginForm = document.getElementById('admin-login-form');
+        const loginBlock = document.getElementById('admin-login');
+        const adminPanel = document.getElementById('admin-panel');
+        const btnLogout = document.getElementById('admin-logout');
+        const mensajeError = document.querySelector('.login-error');
+
+        if (loginForm) {
+            loginForm.addEventListener('submit', async (e) => {
+                e.preventDefault(); 
+                
+                const email = document.getElementById('admin-username').value;
+                const password = document.getElementById('admin-password').value;
+
+                const btnSubmit = loginForm.querySelector('button[type="submit"]');
+                btnSubmit.textContent = "Verificando...";
+                btnSubmit.disabled = true;
+
+                try {
+                    const response = await fetch('/api/login', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email, password })
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok && data.role === 'admin') {
+                        // LOGIN EXITOSO: Cambiamos lo que se ve en pantalla
+                        loginBlock.style.display = 'none';
+                        adminPanel.style.display = 'block';
+                        mensajeError.style.display = 'none';
+
+                        // ACTIVAMOS EL PANEL (Esto carga los productos y eventos de admin.js)
+                        initAdmin(); 
+                        
+                    } else {
+                        // Error de credenciales
+                        mensajeError.textContent = data.message || "Acceso denegado.";
+                        mensajeError.style.display = 'block';
+                    }
+                } catch (error) {
+                    mensajeError.textContent = "Error de conexión con el servidor.";
+                    mensajeError.style.display = 'block';
+                } finally {
+                    btnSubmit.textContent = "Iniciar Sesión";
+                    btnSubmit.disabled = false;
+                }
+            });
+        }
+
+        // Lógica del botón cerrar sesión
+        if (btnLogout) {
+            btnLogout.addEventListener('click', async () => {
+                await fetch('/api/logout', { method: 'POST' });
+                window.location.reload(); // Recargamos para limpiar todo
+            });
+        }
+    </script>
+</body>
+</html>
